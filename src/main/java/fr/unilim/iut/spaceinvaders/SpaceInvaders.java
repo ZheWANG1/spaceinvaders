@@ -23,47 +23,47 @@ public class SpaceInvaders {
 
 	}
 
+	public String recupererEspaceJeuDansChaineASCII() {
+		StringBuilder espaceDeJeu = new StringBuilder();
+		for (int y = 0; y < hauteur; y++) {
+			for (int x = 0; x < longueur; x++) {
+				espaceDeJeu.append(recupererMarqueDeLaPosition(x, y));
+			}
+			espaceDeJeu.append(MARQUE_FIN_LIGNE);
+		}
+		return espaceDeJeu.toString();
+	}
+
+	public void deplacerVaisseauVersLaDroite() {
+		if (vaisseau.abscisse()< (longueur-1)) vaisseau.seDeplacerVersLaDroite();
+		
+	}
+
+	public void deplacerVaisseauVersLaGauche() {
+		if (vaisseau.abscisse()>0) vaisseau.seDeplacerVersLaGauche();
+	}
+	
 	private boolean estDansEspaceJeu(int x, int y) {
 		return (((x >= 0) && (x < longueur)) && ((y >= 0) && (y < hauteur)));
 	}
-
-	@Override
-	public String toString() {
-		StringBuilder espaceDeJeu = new StringBuilder();
-		for (int y = 0; y < hauteur; y++) {
-			for (int x = 0; x < longueur; x++) {
-				espaceDeJeu.append(recupererMarqueDeLaPosition(x, y));
-			}
-			espaceDeJeu.append('\n');
-		}
-		return espaceDeJeu.toString();
-	}
 	
-	private String recupererEspaceJeuDansChaineASCII() {
-		StringBuilder espaceDeJeu = new StringBuilder();
-		for (int y = 0; y < hauteur; y++) {
-			for (int x = 0; x < longueur; x++) {
-				espaceDeJeu.append(recupererMarqueDeLaPosition(x, y));
-			}
-			espaceDeJeu.append('\n');
-		}
-		return espaceDeJeu.toString();
-	}
-
-	private char recupererMarqueDeLaPosition(int x, int y) {
-		char marque;
-		if (this.aUnVaisseauQuiOccupeLaPosition(x, y))
-			marque = 'V';
-		else
-			marque = '.';
-		return marque;
-	}
-
-	private boolean aUnVaisseauQuiOccupeLaPosition(int x, int y) {
-		return this.aUnVaisseau() && vaisseau.occupeLaPosition(x, y);
-	}
-
 	private boolean aUnVaisseau() {
 		return vaisseau != null;
 	}
+	
+	private boolean aUnVaisseauQuiOccupeLaPosition(int x, int y) {
+		return this.aUnVaisseau() && vaisseau.occupeLaPosition(x, y);
+	}
+	
+	private char recupererMarqueDeLaPosition(int x, int y) {
+		char marque;
+		if (this.aUnVaisseauQuiOccupeLaPosition(x, y))
+			marque = MARQUE_VAISSEAU;
+		else
+			marque = MARQUE_VIDE;
+		return marque;
+	}
+
+	
+
 }
