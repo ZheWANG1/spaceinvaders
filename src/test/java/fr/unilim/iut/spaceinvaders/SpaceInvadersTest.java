@@ -195,5 +195,6 @@ public class SpaceInvadersTest {
 		".......VVV.....\n" + 
 		".......VVV.....\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 	}
-
+    
+    
 }
